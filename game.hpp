@@ -1,34 +1,8 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
+#include "gameobject.h"
 #include <vector>
-
-class GameObject
-{
-public:
-    GameObject(float x, float y, float xVelocity, float yVelocity, sf::Color color);
-    float x() const;
-    void setX(float x);
-
-    float y() const;
-    void setY(float y);
-
-    float xVelocity() const;
-    void setXVelocity(float xVelocity);
-
-    float yVelocity() const;
-    void setYVelocity(float yVelocity);
-
-    void move();
-
-    sf::CircleShape shape_;
-
-private:
-    float x_;
-    float y_;
-    float xVelocity_;
-    float yVelocity_;
-};
 
 class Game
 {
