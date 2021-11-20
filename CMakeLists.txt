@@ -10,5 +10,5 @@ find_package(SFML 2.5
   COMPONENTS
     system window graphics network audio REQUIRED)
 
-add_executable(${PROJECT_NAME} "main.cpp" "game.cpp" "gameobject.cpp")
-target_link_libraries(heygame sfml-graphics)
+add_subdirectory(libs)
+add_subdirectory(examples)

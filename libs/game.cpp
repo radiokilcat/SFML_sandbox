@@ -3,11 +3,12 @@
 Game::Game(sf::RenderWindow* window)
     :window_(window)
 {
-
 }
 
 void Game::run()
 {
+    sf::CircleShape experiment(10.f);
+    sf::Vector2f increment(0.4f, 0.4f);
       while (window_->isOpen())
       {
           sf::Event event;
@@ -17,13 +18,12 @@ void Game::run()
                   window_->close();
           }
           for(auto& object: game_objects_)
-          {
-              window_->draw(object.shape());
-              object.move(1, 1);
-          }
+              object.draw(window_);
+          for(auto& object: game_objects_)
+              object.update(window_->getSize());
           window_->display();
+          window_->clear();
       }
-
 }
 
 void Game::add_game_object(GameObject game_object)

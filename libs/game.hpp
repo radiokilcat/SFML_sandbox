@@ -1,7 +1,5 @@
-#pragma once
-
 #include "SFML/Graphics.hpp"
-#include "gameobject.h"
+#include "gameobject.hpp"
 #include <vector>
 
 class Game
