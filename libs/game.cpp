@@ -18,15 +18,15 @@ void Game::run()
                   window_->close();
           }
           for(auto& object: game_objects_)
-              object.draw(window_);
+              object->draw(window_);
           for(auto& object: game_objects_)
-              object.update(window_->getSize());
+              object->update(window_->getSize());
           window_->display();
           window_->clear();
       }
 }
 
-void Game::add_game_object(GameObject game_object)
+void Game::add_game_object(GameObject* game_object)
 {
     game_objects_.push_back(game_object);
 }

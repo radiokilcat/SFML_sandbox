@@ -1,17 +1,18 @@
 #include "SFML/Graphics.hpp"
 #include "game.hpp"
+#include "player.hpp"
+#include "npc.hpp"
 #include <iostream>
-
-using namespace std;
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    window.setFramerateLimit(60);
     Game game(&window);
 
-    GameObject obj1(1, 2, sf::Color::Red);
-    GameObject obj2(5, 10, sf::Color::Green);
-    GameObject obj3(34, 4, sf::Color::Blue);
+    Player* obj1 = new Player(1, 2, sf::Color::Red);
+    Npc* obj2 = new Npc(100, 10, sf::Color::Green);
+    Npc* obj3 = new Npc(200, 50, sf::Color::Blue);
     game.add_game_object(obj1);
     game.add_game_object(obj2);
     game.add_game_object(obj3);
