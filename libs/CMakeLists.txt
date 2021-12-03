@@ -1,5 +1,7 @@
 set(LIB_SOURCES
     game.cpp
+    gameobject.cpp
+    eventhandler.cpp
     player.cpp
     npc.cpp
     )
@@ -7,6 +9,7 @@ set(LIB_SOURCES
 set(LIB_HEADERS
     game.hpp
     gameobject.hpp
+    eventhandler.hpp
     player.hpp
     npc.hpp
     )

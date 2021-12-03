@@ -7,8 +7,6 @@ Game::Game(sf::RenderWindow* window)
 
 void Game::run()
 {
-    sf::CircleShape experiment(10.f);
-    sf::Vector2f increment(0.4f, 0.4f);
       while (window_->isOpen())
       {
           sf::Event event;
@@ -16,7 +14,9 @@ void Game::run()
           {
               if (event.type == sf::Event::Closed)
                   window_->close();
-              if (event.type == sf::Event::KeyPressed)
+              if (event.type != sf::Event::KeyPressed)
+                  player_->stop();
+              else
                   handleKey();
           }
           for(auto& object: game_objects_)
@@ -43,16 +43,36 @@ void Game::handleKey()
 {
     for (auto it: game_objects_)
     {
-        if(it != player_)
-            if (player_->checkCollisions(it))
+        sf::FloatRect bounds = it->getGlobalBounds();
+        if (it == player_)
+        for (auto it1: game_objects_)
+        {
+            if (it1 == it)
+                continue;
+            sf::FloatRect it1_bounds = it1->getGlobalBounds();
+            if (bounds.intersects(it1_bounds))
                 return;
+        }
     }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        player_->move(-5.f, 0.f);
+        player_->move(sf::Vector2f{-5.f, 0.f});
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        player_->move(5.f, 0.f);
+        player_->move(sf::Vector2f{5.f, 0.f});
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        player_->move(0.f, -5.f);
+        player_->move(sf::Vector2f{0.f, -5.f});
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        player_->move(0.f, 5.f);
+        player_->move(sf::Vector2f{0.f, 5.f});
+}
+
+//bool Game::intersects(GameObject* a, GameObject* b)
+//{
+
+//}
+
+void Game::handle_collision(GameObject* a, GameObject* b)
+{
+//    sf::Vector2f a_velocity = a;
+//    sf::Vector2f b_velocity = b;
+
 }
