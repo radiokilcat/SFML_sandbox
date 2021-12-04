@@ -13,6 +13,7 @@ set(LIB_HEADERS
     player.hpp
     npc.hpp
     fixed_queue.hpp
+    utils.hpp
     )
 
 add_library(my_lib STATIC ${LIB_SOURCES} ${LIB_HEADERS})

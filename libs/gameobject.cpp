@@ -1,10 +1,14 @@
 #include "gameobject.hpp"
 #include <iostream>
 
+#include "utils.hpp"
 
-GameObject::GameObject(float x, float y, sf::Shape* shape)
+
+GameObject::GameObject(float x, float y, sf::Shape* shape, std::string name)
   : position_{x, y}
   , shape_{shape}
+  , name_{name}
+  , uuid_{Uuid::generate()}
 {
 }
 
@@ -46,4 +50,14 @@ void GameObject::move(sf::Vector2f velocity)
 void GameObject::stop()
 {
     velocity_ = {0, 0};
+}
+
+std::string GameObject::getName()
+{
+    return name_;
+}
+
+unsigned int GameObject::getId()
+{
+    return uuid_;
 }

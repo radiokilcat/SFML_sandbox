@@ -15,12 +15,17 @@ public:
 
     void move(sf::Vector2f velocity);
     void stop();
+    std::string getName();
+    unsigned int getId();
 
 protected:
-    GameObject(float x, float y, sf::Shape* shape);
+    GameObject(float x, float y, sf::Shape* shape, std::string name);
     sf::Vector2f position_;
     sf::Shape* shape_;
     sf::Vector2f velocity_;
     sf::Vector2f accel_;
+    std::string name_;
+private:
+    unsigned int uuid_;
 };
 

@@ -30,5 +30,5 @@ private:
     sf::RenderWindow* window_;
     std::vector<GameObject*> game_objects_;
     Player* player_;
-    std::map<GameObject*, FixedQueue<sf::Vector2f, 10>> object_tracking_;
+    std::map<unsigned int, sf::Vector2f> object_tracking_;
 };

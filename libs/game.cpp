@@ -23,10 +23,11 @@ void Game::run()
           for(auto& object: game_objects_)
           {
               object->update(window_->getSize());
+              detect_collision();
+
               track_object(object);
               object->draw(window_);
           }
-//          std::cout << "player tracks: " << object_tracking_[player_].back().x << " " << object_tracking_[player_].back().y << std::endl;
 
           window_->display();
           window_->clear();
@@ -36,9 +37,8 @@ void Game::run()
 void Game::add_game_object(GameObject* game_object)
 {
     game_objects_.push_back(game_object);
-    FixedQueue<sf::Vector2f, 10> positions;
-    positions.push(game_object->getPosition());
-    object_tracking_[game_object] = positions;
+    object_tracking_[game_object->getId()] = game_object->getPosition();
+
 }
 
 void Game::set_player(Player* player)
@@ -48,15 +48,11 @@ void Game::set_player(Player* player)
 
 void Game::track_object(GameObject* game_object)
 {
-    object_tracking_[game_object].push(game_object->getPosition());
+    object_tracking_[game_object->getId()] = game_object->getPosition();
 }
 
 void Game::handleKey()
 {
-    if (detect_collision())
-        return;
-
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         player_->move(sf::Vector2f{-5.f, 0.f});
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -70,21 +66,9 @@ void Game::handleKey()
 
 void Game::handle_collision(GameObject* a, GameObject* b)
 {
-//    std::cout << "position a before collision " << a->getPosition().x << " " << a->getPosition().y << std::endl;
-//    std::cout << "position b before collision " << b->getPosition().x << " " << b->getPosition().y << std::endl;
-//    sf::Vector2f a_velocity = a->getVelocity();
-//    sf::Vector2f b_velocity = b->getVelocity();
-//    a->setPosition(a->getPosition() - a_velocity);
-//    b->setPosition(b->getPosition() - b_velocity);
-//    std::cout << "position a after collision " << a->getPosition().x << " " << a->getPosition().y << std::endl;
-//    std::cout << "position b after collision " << b->getPosition().x << " " << b->getPosition().y << std::endl;
-//    a->stop();
-//    b->stop();
-    while (a->getGlobalBounds().intersects(b->getGlobalBounds()))
-    {
-        a->setPosition(object_tracking_[a].pop());
-        b->setPosition(object_tracking_[b].pop());
-    }
+    a->setPosition(object_tracking_.at(a->getId()));
+    b->setPosition(object_tracking_.at(b->getId()));
+
     a->stop();
     b->stop();
 }
@@ -104,8 +88,8 @@ bool Game::detect_collision()
             {
                 std::cout << "handle collision" << std::endl;
                 handle_collision(it, it1);
-                return true;
             }
         }
     }
+    return false;
 }
