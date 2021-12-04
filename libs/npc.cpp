@@ -1,7 +1,7 @@
 #include "npc.hpp"
 
 Npc::Npc(float x, float y, sf::Color color)
-    : GameObject(x, y, new sf::CircleShape(10.f))
+    : GameObject(x, y, new sf::CircleShape(20.f))
 {
     shape_->setFillColor(color);
 }
@@ -22,7 +22,7 @@ void Npc::draw(sf::RenderTarget* target)
 //    shape_->setPosition(position_);
 //}
 
-sf::Vector2f Npc::get_velocity()
-{
-    return velocity_;
-}
+//sf::Vector2f Npc::get_velocity()
+//{
+//    return velocity_;
+//}

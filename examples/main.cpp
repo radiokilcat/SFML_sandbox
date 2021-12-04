@@ -13,7 +13,8 @@ int main()
     Player* obj1 = new Player(1, 2, sf::Color::Red);
     Npc* obj2 = new Npc(100, 10, sf::Color::Green);
     Npc* obj3 = new Npc(200, 50, sf::Color::Blue);
-    game.add_player(obj1);
+    game.add_game_object(obj1);
+    game.set_player(obj1);
     game.add_game_object(obj2);
     game.add_game_object(obj3);
 

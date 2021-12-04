@@ -12,6 +12,7 @@ set(LIB_HEADERS
     eventhandler.hpp
     player.hpp
     npc.hpp
+    fixed_queue.hpp
     )
 
 add_library(my_lib STATIC ${LIB_SOURCES} ${LIB_HEADERS})
