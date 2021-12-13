@@ -6,6 +6,7 @@ class GameObject
 {
 public:
     virtual void draw(sf::RenderTarget* target) = 0;
+
     void update(sf::Vector2u targetSize);
     sf::FloatRect getGlobalBounds();
     sf::Vector2f getVelocity();
@@ -25,6 +26,7 @@ protected:
     sf::Vector2f velocity_;
     sf::Vector2f accel_;
     std::string name_;
+
 private:
     unsigned int uuid_;
 };

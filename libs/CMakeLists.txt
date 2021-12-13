@@ -4,6 +4,7 @@ set(LIB_SOURCES
     eventhandler.cpp
     player.cpp
     npc.cpp
+    boxcollider.cpp
     )
 
 set(LIB_HEADERS
@@ -14,6 +15,7 @@ set(LIB_HEADERS
     npc.hpp
     fixed_queue.hpp
     utils.hpp
+    boxcollider.hpp
     )
 
 add_library(my_lib STATIC ${LIB_SOURCES} ${LIB_HEADERS})
