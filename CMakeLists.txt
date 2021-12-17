@@ -6,9 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 project(heygame)
 
-find_package(SFML 2.5
-  COMPONENTS
-    system window graphics network audio REQUIRED)
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
 
 add_subdirectory(libs)
 add_subdirectory(examples)

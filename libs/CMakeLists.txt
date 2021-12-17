@@ -19,4 +19,4 @@ set(LIB_HEADERS
     )
 
 add_library(my_lib STATIC ${LIB_SOURCES} ${LIB_HEADERS})
-target_link_libraries(my_lib sfml-graphics)
+target_link_libraries(my_lib ${CONAN_LIBS})
